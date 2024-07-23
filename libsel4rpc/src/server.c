@@ -147,6 +147,13 @@ static int sel4rpc_handle_irq(sel4rpc_server_env_t *env, RpcMessage *rpcMsg)
     return ret;
 }
 
+static int sel4rpc_handle_bench(sel4rpc_server_env_t *env, RpcMessage *rpcMsg)
+{
+    // Just send a basic reply
+    int ret = sel4rpc_server_reply(env, 0, 0, 0);
+    return ret;
+}
+
 int sel4rpc_default_handler(sel4rpc_server_env_t *env, UNUSED void *data, RpcMessage *rpcMsg)
 {
     cspacepath_t path;
@@ -158,6 +165,8 @@ int sel4rpc_default_handler(sel4rpc_server_env_t *env, UNUSED void *data, RpcMes
         return sel4rpc_handle_ioport(env, rpcMsg);
     case RpcMessage_irq_tag:
         return sel4rpc_handle_irq(env, rpcMsg);
+    case RpcMessage_bench_tag:
+        return sel4rpc_handle_bench(env, rpcMsg);
     default:
         ZF_LOGE("Not sure what to do!");
     }

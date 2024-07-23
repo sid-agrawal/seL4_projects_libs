@@ -60,6 +60,10 @@ message IOPortMessage {
     uint32 end = 2;
 };
 
+message BenchmarkIPCMessage {
+    /* no content */
+}
+
 message ReturnMessage {
     uint32 errorCode = 1;
     uint64 cookie = 2;
@@ -76,5 +80,6 @@ message RpcMessage {
         MemoryAllocMessage memory = 2;
         IrqAllocMessage irq = 3;
         IOPortMessage ioport = 4;
+        BenchmarkIPCMessage bench = 5;
     };
 };
