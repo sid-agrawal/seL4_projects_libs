@@ -5,6 +5,7 @@
  *
  */
 syntax = "proto3";
+import 'nanopb.proto';
 
 enum Action {
     ALLOCATE = 0;
@@ -64,6 +65,10 @@ message BenchmarkIPCMessage {
     /* no content */
 }
 
+message BenchmarkLongIPCMessage {
+    repeated uint64 args = 1 [(nanopb).max_count = 8];
+}
+
 message ReturnMessage {
     uint32 errorCode = 1;
     uint64 cookie = 2;
@@ -81,5 +86,6 @@ message RpcMessage {
         IrqAllocMessage irq = 3;
         IOPortMessage ioport = 4;
         BenchmarkIPCMessage bench = 5;
+        BenchmarkLongIPCMessage bench_long = 6;
     };
 };

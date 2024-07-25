@@ -166,6 +166,7 @@ int sel4rpc_default_handler(sel4rpc_server_env_t *env, UNUSED void *data, RpcMes
     case RpcMessage_irq_tag:
         return sel4rpc_handle_irq(env, rpcMsg);
     case RpcMessage_bench_tag:
+    case RpcMessage_bench_long_tag:
         return sel4rpc_handle_bench(env, rpcMsg);
     default:
         ZF_LOGE("Not sure what to do!");

@@ -11,7 +11,8 @@
 struct _RpcMessage;
 typedef struct _RpcMessage RpcMessage;
 
-typedef struct sel4rpc_client_env {
+typedef struct sel4rpc_client_env
+{
     seL4_CPtr server_ep;
     seL4_Word magic;
 } sel4rpc_client_t;
@@ -19,3 +20,6 @@ typedef struct sel4rpc_client_env {
 int sel4rpc_client_init(sel4rpc_client_t *client, seL4_CPtr server_ep, seL4_Word magic);
 int sel4rpc_call(sel4rpc_client_t *client, RpcMessage *msg, seL4_CPtr root,
                  seL4_CPtr capPtr, seL4_Word capDepth);
+int sel4rpc_call_with_caps(sel4rpc_client_t *client, RpcMessage *msg,
+                           seL4_CPtr root, seL4_CPtr capPtr, seL4_Word capDepth,
+                           seL4_CPtr *caps_to_send, uint32_t n_caps_to_send);
